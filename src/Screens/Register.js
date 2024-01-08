@@ -10,6 +10,9 @@ export default function Register() {
         navigate('/')
     }
 
+    const [message, setMessage] = useState(false);
+    const[isSuccess , setIsSuccess] = useState(false);
+
     const [userData, setUserData] = useState({
       name: '',
       email: '',
@@ -27,7 +30,16 @@ export default function Register() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      if(userData.name==='' || userData.email==='' || userData.phone==='' || userData.password===''){
+        setIsSuccess(false)
+          setMessage(true);
+          setMessage("Please enter all credeantials")
+          
+      }
   
+      else{
+
+      
       try {
         const response = await axios.post('http://localhost:5000/api/register', userData, {
           headers: {
@@ -36,13 +48,24 @@ export default function Register() {
         });
   
         if (response.status === 201) {
-          console.log('User registered successfully');
+          setIsSuccess(true)
+          setMessage(true);
+          setMessage("User registered successfully")
+         
         } else {
-          console.error('Failed to register user');
+          setIsSuccess(false)
+          setMessage(true);
+          setMessage("Failed to register user")
+          
         }
       } catch (error) {
+        setIsSuccess(false)
+        setMessage(true);
+        setMessage("Failed to register user")
         console.error('Error registering user:', error);
       }
+
+    }
     };
   return (
     
@@ -59,6 +82,8 @@ export default function Register() {
             <button type='submit'>Register</button>
           </form>
           <p onClick={opneHomepage}>Go to Login page</p>
+
+          <p style={{marginTop:'10px',color: isSuccess ?'green':'red',fontSize:'15px',fontWeight:'700'}}>{message}</p>
        </div>
        </div>
     </>

@@ -36,9 +36,9 @@ mongoose.connect('mongodb://localhost:27017/UserManagement', {
       const user = await User.findOne({ email, password });
   
       if (user) {
-        res.status(200).json({ success: true, message: 'Login successful' });
+        res.status(200).json({success: true, users: user, message: 'Login successful' });
       } else {
-        res.status(401).json({ success: false, message: 'Invalid email or password' });
+        res.status(200).json({ success: false, message: 'Invalid email or password' });
       }
     } catch (error) {
       console.error('Error during login:', error);
