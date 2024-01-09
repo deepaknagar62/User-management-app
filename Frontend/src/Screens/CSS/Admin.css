@@ -1,0 +1,23 @@
+
+.box-container{
+
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    padding-top: 50px;
+    margin-left: 100px;
+}
+
+.option-container{
+    height: 220px;
+    width: 400px;
+    border:2px solid;                       /* rgb(238, 235, 39);*/
+    border-color: rgb(107, 103, 103);
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 100px;
+    background-color: rgb(238, 235, 39);
+    box-shadow: 0 0 10px 2px rgb(65, 63, 63);
+}

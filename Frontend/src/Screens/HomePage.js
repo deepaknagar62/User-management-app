@@ -78,7 +78,7 @@ export default function HomePage({response}) {
     <>
      <header style={{backgroundColor:'rgb(107, 91, 149)' , padding:'20px',height:'20px'}}></header>
      <div className='main-txt'>
-     <h1>Welcome to User Management System</h1>
+     <h1>Welcome to Employee Management System</h1>
     </div> 
 
     <div className='main-container'>

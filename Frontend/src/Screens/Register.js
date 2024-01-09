@@ -33,7 +33,7 @@ export default function Register() {
       if(userData.name==='' || userData.email==='' || userData.phone==='' || userData.password===''){
         setIsSuccess(false)
           setMessage(true);
-          setMessage("Please enter all credeantials")
+          setMessage("Please enter all credentials")
           
       }
   
@@ -70,6 +70,7 @@ export default function Register() {
   return (
     
     <>
+       <header style={{backgroundColor:'rgb(107, 91, 149)' , padding:'20px',height:'20px'}}></header>
       <div style={{display:'flex' , justifyContent:'center',marginTop:'100px'}}> 
        <div className='register-container' >
           <h2>Regiser User</h2>

@@ -1,0 +1,32 @@
+
+.name-cont{
+    display: flex;
+    margin-bottom: -30px;
+    color: rgb(12, 109, 77);
+    justify-content: space-between;
+}
+
+
+
+.info-container{
+
+    height: 50px;
+    width: 80%;
+    border:1.5px solid;                       /* rgb(238, 235, 39);*/
+    border-color: rgb(36, 34, 34);
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    background-color: rgb(251, 251, 253);
+   
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    
+    
+}
+

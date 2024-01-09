@@ -10,6 +10,7 @@ export default function UserPage() {
   return (
     <>
       <header style={{backgroundColor:'rgb(107, 91, 149)' , padding:'20px',height:'20px'}}></header>
+      <h3 style={{color:'blue', marginLeft:'10px',marginTop:'8px'}}>Welcome {user.name}</h3>
        <div style={{display:'flex', justifyContent:'center',marginTop:'100px'}}>
        <div className='register-container'>
 
