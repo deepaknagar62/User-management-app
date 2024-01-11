@@ -2,11 +2,14 @@ import React from 'react'
 import './CSS/Admin.css'
 import userimg from './Images/userlogo.png'
 import manuser from './Images/manageuser.jpg'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 
 export default function AdminPage() {
+  const location = useLocation();
+  const user = location.state.user;
+  
   const navigate = useNavigate();
    const openList = ()=>{
     navigate('/employee-list');
@@ -16,8 +19,9 @@ export default function AdminPage() {
    }
   return (
     <>
+    
       <header style={{backgroundColor:'rgb(107, 91, 149)' , padding:'20px',height:'20px'}}></header>
-      <h3 style={{color:'blue', marginLeft:'10px',marginTop:'8px'}}>Welcome Admin</h3>
+      <h3 style={{color:'blue', marginLeft:'10px',marginTop:'8px'}}>Welcome {user.name}</h3>
       <h1 style={{textAlign:'center',color:'rgb(7, 68, 104)'}}> Admin Panel</h1>
        <div className='box-container'>
          <div className='option-container' onClick={openList}>

@@ -2,6 +2,9 @@ var express = require('express')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
+const randomstring = require('randomstring');
+
 
 
 const app = express();
@@ -24,6 +27,7 @@ mongoose.connect('mongodb://localhost:27017/UserManagement', {
     email:String,
     phone:Number,
     password:String,
+    role:String,
     
   })
 
@@ -81,6 +85,52 @@ mongoose.connect('mongodb://localhost:27017/UserManagement', {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   })
+
+
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'your-email@gmail.com',
+      pass: 'your-email-password',
+    },
+  });
+  
+  const generateOTP = () => {
+    return randomstring.generate({
+      length: 6,
+      charset: 'numeric',
+    });
+  };
+  
+  app.post('/api/send-otp', async (req, res) => {
+    try {
+      const { email } = req.body;
+  
+      
+      const otp = generateOTP();
+  
+    
+      const mailOptions = {
+        from: 'your-email@gmail.com',
+        to: email,
+        subject: 'Your OTP for Verification',
+        text: `Your OTP is: ${otp}`,
+      };
+  
+      await transporter.sendMail(mailOptions);
+  
+      res.status(200).json({ otpGenerated: true });
+  
+     
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+      res.status(500).json({ otpGenerated: false, error: 'Failed to send OTP' });
+    }
+  });
+
+
+
 
 
   app.listen(port, () => {

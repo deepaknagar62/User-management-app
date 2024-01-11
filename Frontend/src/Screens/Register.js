@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import './CSS/Register.css'
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-export default function Register() {
-    const navigate = useNavigate();
-    const opneHomepage = ()=>{
-        navigate('/')
-    }
 
+export default function Register() {
+   
+    
     const [message, setMessage] = useState(false);
     const[isSuccess , setIsSuccess] = useState(false);
 
@@ -18,6 +15,7 @@ export default function Register() {
       email: '',
       phone: '',
       password: '',
+      role: '',
     });
   
     const handleChange = (e) => {
@@ -30,12 +28,30 @@ export default function Register() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      const desireEmail = 'primathon.in';
+      const regularExp = new RegExp(`@${desireEmail}`);
+      const str = userData.phone;
+      const regex = /\d/g;
+      const matches = str.match(regex);
+      const numDigits = matches.length;
       if(userData.name==='' || userData.email==='' || userData.phone==='' || userData.password===''){
         setIsSuccess(false)
           setMessage(true);
           setMessage("Please enter all credentials")
           
       }
+
+      else if (!regularExp.test(userData.email)){
+        setIsSuccess(false)
+          setMessage(true);
+          setMessage("Invalid email , Enter organisation email ");
+      }
+      else if(numDigits !== 10){
+        setIsSuccess(false)
+        setMessage(true);
+        setMessage("Enter valid phone number ");
+      }
+      
   
       else{
 
@@ -79,10 +95,16 @@ export default function Register() {
             <input placeholder='Email' type='text' name='email' value={userData.email} onChange={handleChange} />
             <input placeholder='Phone' type='text' name='phone' value={userData.phone} onChange={handleChange} />
             <input placeholder='Password' type='password' name='password' value={userData.password} onChange={handleChange} />
-
+            <div>
+            <select style={{width:'190px', height:'25px',marginTop:'20px'}} name='role' value={userData.role} onChange={handleChange}>
+            <option value='' disabled>Select Role</option>
+            <option value='user'>User</option>
+            <option value='admin'>Admin</option>
+          </select>
+            </div>
             <button type='submit'>Register</button>
           </form>
-          <p onClick={opneHomepage}>Go to Login page</p>
+         
 
           <p style={{marginTop:'10px',color: isSuccess ?'green':'red',fontSize:'15px',fontWeight:'700'}}>{message}</p>
        </div>

@@ -7,6 +7,7 @@ import UserPage from './Screens/UserPage';
 import AdminPage from './Screens/AdminPage';
 import Userlist from './Screens/Userlist';
 import ManageUser from './Screens/ManageUser';
+import UserRegister from './Screens/UserRegister';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage/>}></Route>
           <Route path='/register-user' element={<Register/>}></Route>
+          <Route path='/user-register-user' element={<UserRegister/>}></Route>
           <Route path='/user-page' element={<UserPage/>}></Route>
           <Route path='/admin-page' element={<AdminPage/>}></Route>
           <Route path='/employee-list' element={<Userlist/>}></Route>

@@ -14,7 +14,7 @@ export default function HomePage({response}) {
 
     
     const openRegisterpage = ()=>{
-        navigate('/register-user')
+        navigate('/user-register-user')
     }
 
     const [loginData, setLoginData] = useState({
@@ -49,9 +49,9 @@ export default function HomePage({response}) {
         if (response.data.success) {
           const user = response.data.users;
           
-          if(user.name==='Admin'){
+          if(user.role==='admin'){
             console.log("admin page")
-            navigate('/admin-page')
+            navigate('/admin-page' , {state : {user}})
           }else{
             
             navigate('/user-page', { state: { user } })
